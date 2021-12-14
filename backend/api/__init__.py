@@ -22,9 +22,11 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
+    # import and register blueprints
+    from api.views import user, recipe
 
+    # why blueprints http://flask.pocoo.org/docs/1.0/blueprints/
+    app.register_blueprint(user.user)
+    app.register_blueprint(recipe.recipe)
+    
     return app

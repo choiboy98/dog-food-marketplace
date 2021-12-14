@@ -8,7 +8,6 @@ class User(Mixin, db.Model):
 
     __tablename__ = "user"
 
-    """FP ids start with f"""
     id = db.Column(db.String, unique=True, primary_key=True)
     email = db.Column(db.String)
     name = db.Column(db.String)
@@ -16,7 +15,7 @@ class User(Mixin, db.Model):
     description = db.Column(db.String)
 
     def __init__(self, data):
-        self.id = "f" + str(uuid.uuid4())
+        self.id = "u" + str(uuid.uuid4())
 
         # required fields should be checked for existence by the request
         self.email = data["email"]
