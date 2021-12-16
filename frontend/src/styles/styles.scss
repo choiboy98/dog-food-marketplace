@@ -1,0 +1,262 @@
+$font: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+  "Helvetica Neue", sans-serif;
+
+// colors
+$white: #fff;
+$black: #000;
+$gray: #808080;
+$maroon: #83333e;
+$off-white: #f2f4f5;
+
+html,
+body {
+  font-family: $font;
+  font-size: 16px;
+}
+
+.container {
+  width: 1640px;
+  min-width: 1640px;
+  margin: 0 auto;
+  @media (max-width: 1680px) {
+    width: 1440px;
+    min-width: 1440px;
+  }
+  @media (max-width: 1440px) {
+    width: 1280px;
+    min-width: 1280px;
+  }
+  @media (max-width: 1280px) {
+    width: 976px;
+    min-width: 976px;
+  }
+  @media (max-width: 976px) {
+    width: 768px;
+    min-width: 768px;
+  }
+}
+
+button {
+    border: transparent;
+    background-color: transparent;
+}
+
+.modal {
+    width: 50%;
+    height: 600px;
+    top: 80px;
+    position: relative;
+    margin: 0 auto;
+    background-color: $off-white;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.modal_content {
+    position: absolute;
+    left: 33%;
+    top: 33%;
+}
+
+// Header
+header {
+    height: 80px;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    z-index: 10;
+    .inner-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 80px;
+        .logo {
+            a {
+              font-weight: 700;
+              text-decoration: none;
+              letter-spacing: 1.5px;
+              color: $black;
+            }
+        }
+        .navigation {
+            nav {
+                button, a {
+                  margin: 0 20px;
+                  text-decoration: none;
+                  letter-spacing: 1.75px;
+                  text-transform: uppercase;
+                  font-size: 0.75rem;
+                  color: $black;
+                  &:last-child {
+                    margin-right: 0px;
+                  }
+                }
+            }
+        }
+    }
+}
+
+// Featured Recipe
+.featured-recipe {
+  width: 100%;
+  height: 600px;
+  top: 80px;
+  position: relative;
+  margin: 0 auto;
+  background-color: $off-white;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
+  overflow: hidden;
+  
+  .inner-recipe {
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    img {
+      top: -300px;
+      opacity: 0.7;
+    }
+
+    .inner-recipe-words {
+      position: absolute; //change this to overlap
+      margin-left: 50rem;
+      margin-bottom: 30rem;
+      
+      z-index: 10;
+      text-decoration: none;
+      letter-spacing: 1.75px;
+      text-transform: uppercase;
+      h1 {
+        font-size: 5rem;
+        color: $white;
+      }
+  
+      h2 {
+        font-weight: 500;
+        font-size: 0.75rem;
+        color: $gray;
+      }
+    }
+  }
+}
+
+// Social Banner
+.social-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  top: 160px;
+  margin: auto;
+  @media (max-width: 1680px) {
+    width: 768px;
+    min-width: 768px;
+  }
+  @media (max-width: 1440px) {
+    width: 768px;
+    min-width: 768px;
+  }
+  @media (max-width: 1280px) {
+    width: 480px;
+    min-width: 480px;
+  }
+  @media (max-width: 976px) {
+    width: 360px;
+    min-width: 360px;
+  }
+}
+
+// Journal
+.journal-banner {
+  display: flex;
+  position: relative;
+  top: 240px;
+  
+  .featured-journal {
+    z-index: 5;
+    display: flex;
+
+    .journal-words {
+      position: absolute;
+      margin-bottom: 30rem;
+      z-index: 10;
+      text-decoration: none;
+      letter-spacing: 1.75px;
+      text-transform: uppercase;
+      margin-left: 25rem;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      
+      h2 {        
+        font-size: 4rem;
+        color: $black;
+      }
+
+      h3 {
+        font-weight: 500;
+        font-size: 1rem;
+        color: $maroon;
+      }
+    }
+  }
+}
+
+.vertical-writing {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  text-decoration: none;
+  letter-spacing: 30px;
+  text-transform: uppercase;
+  font-size: 5rem;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5rem;
+  width: 100%;
+  height: 50%;
+}
+
+.card {
+  width: 100%;
+  height: 90%;
+  margin: 0 0 0 0;
+  background-color: $off-white;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
+  overflow: hidden;
+  text-align: right;
+  z-index: 5;
+
+  img {
+    height: 300%;
+    width: 300%;
+    overflow: hidden;
+    left: -20rem;
+    top: -10rem;
+  }
+
+  h1 {
+    left: -1rem;
+    top: -5rem;
+    color: $white;
+    margin: auto;
+    position: relative;
+    z-index: 10;
+    text-decoration: none;
+    letter-spacing: 1.75px;
+    text-transform: uppercase;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 2rem;
+  }
+}
+
+.card:hover {
+  position: relative;
+  top: -5px;
+  left: -5px;
+}
