@@ -1,13 +1,25 @@
-import * as React from 'react';
+// import * as React from 'react';
 import '../styles/styles.scss';
-import Header from '../components/header';
+// import Layout from "../components/layout"
 
-const IndexPage = () => {
+// const IndexPage = () => {
+//   return (
+//     <Layout>
+//       <h1>Hello world!</h1>
+//     </Layout>
+//   )
+// }
+// // Step 3: Export your component
+// export default IndexPage
+
+import React from "react"
+import { Link } from "gatsby"
+import { getUser, isLoggedIn } from "../utils/auth"
+import Layout from "../components/layout"
+export default function IndexPage() {
   return (
-    <div>
-      <Header shouldDisplayTabs="true" />
-    </div>
+    <Layout>
+      
+    </Layout>
   )
 }
-// Step 3: Export your component
-export default IndexPage

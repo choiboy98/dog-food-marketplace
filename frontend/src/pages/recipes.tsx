@@ -1,28 +1,16 @@
 import * as React from 'react'
 import { Link } from 'gatsby'
+import Layout from '../components/layout';
+import CreateRecipe from '../components/createRecipe';
+import RecipeHeader from '../components/recipeHeader';
 
-const Recipes = ({ shouldDisplayTabs }) => {
-    const [seen, toggle] = React.useState(false)
+const Recipes = () => {
 
     return (
-        <header>
-            <div className="container">
-                <div className="inner-header">
-                    <div className="logo">
-                        <Link to="/">RUFF MARKET</Link>
-                    </div>
-                    {
-                        shouldDisplayTabs === "true" ? 
-                        <div className="navigation">
-                            <nav>
-                                <Link to="/recipes">Recipes</Link>
-                                <button onClick={() => toggle(!seen)}>Log In</button>
-                            </nav>
-                        </div> : ''
-                    }
-                </div>
-            </div>
-        </header>
+        <Layout>
+            <RecipeHeader />
+            {/* <CreateRecipe /> */}
+        </Layout>
     )
 }
 

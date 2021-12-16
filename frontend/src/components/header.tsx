@@ -1,10 +1,8 @@
 import * as React from 'react'
-import { Link } from 'gatsby'
-import LoginPopForm from './loginPopForm';
+import { Link, navigate } from 'gatsby'
+import { isLoggedIn, logout } from "../utils/auth"
 
-const Header = ({ shouldDisplayTabs }) => {
-    const [seen, toggle] = React.useState(false)
-
+const Header = () => {
     return (
         <header>
             <div className="container">
@@ -12,17 +10,23 @@ const Header = ({ shouldDisplayTabs }) => {
                     <div className="logo">
                         <Link to="/">RUFF MARKET</Link>
                     </div>
-                    {
-                        shouldDisplayTabs === "true" ? 
                         <div className="navigation">
                             <nav>
                                 <Link to="/recipes">Recipes</Link>
-                                <button onClick={() => toggle(!seen)}>Log In</button>
+                                {isLoggedIn() ? (
+                                        <a
+                                            href="/"
+                                            onClick={event => {
+                                            event.preventDefault()
+                                            logout(() => navigate(`/app/login`))
+                                            }}
+                                        >
+                                            Logout
+                                    </a>
+                                ) : <Link to="/app/login">log in</Link>}
                             </nav>
-                        </div> : ''
-                    }
-                </div>
-            {seen ? <LoginPopForm toggle={toggle} /> : ''}
+                        </div>
+                </div>                
             </div>
         </header>
     )
