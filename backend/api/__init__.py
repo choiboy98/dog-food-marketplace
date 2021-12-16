@@ -1,6 +1,8 @@
 import os
 from flask import Flask
 from flask_cors import CORS
+from sqlalchemy_utils import create_database, database_exists
+from flask_migrate import Migrate
 
 def create_app(test_config=None):
     # create and configure the app
@@ -24,6 +26,16 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
+
+    db_url = "postgresql://localhost:5432/ruff"
+    if not database_exists(db_url):
+        create_database(db_url)
+
+    # register sqlalchemy to this app
+    from api.models import db
+
+    db.init_app(app)  # initialize Flask SQLALchemy with this flask app
+    Migrate(app, db)
 
     # import and register blueprints
     from api.views import user, recipe
