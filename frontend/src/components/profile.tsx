@@ -3,6 +3,8 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { getUser } from '../utils/auth';
 import { GatsbyImage } from "gatsby-plugin-image"
 
+import "../styles/profile.scss"
+
 const Profile = () => {
     const data = useStaticQuery(graphql`
     query {

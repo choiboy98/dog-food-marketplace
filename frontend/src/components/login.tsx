@@ -4,14 +4,7 @@ import { handleLogin, isLoggedIn } from "../utils/auth"
 import React, { Component, useReducer, useState } from "react";
 import { Link } from 'gatsby'
 
-// import TextField from '@mui/material/TextField';
-import { register } from '../utils/ApiWrapper';
-
-const registerUser = async (username: string, password: string) => {
-    const { type, response } = await register(username, password)
-    console.log(type)
-    console.log(response)
-}
+import TextField from '@mui/material/TextField';
 
 const Login = ({ path }) => {
     const handleClick = () => {
@@ -43,7 +36,7 @@ const Login = ({ path }) => {
                     </div>
                     <input type="submit" value="Log In" onClick={onSubmit}/>
                 </form>
-                {/* <TextField id="standard-basic" label="Standard" variant="standard" /> */}
+                <TextField id="standard-basic" label="Standard" variant="standard" />
             </div>
         </div>
     )

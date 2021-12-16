@@ -1,6 +1,9 @@
 import * as React from 'react'
 
 const RecipeHeader = () => {
+    const doNothing = () => {
+
+    }
     return (
         <div className="recipe-header">
             <form action="/" method="get">
@@ -15,6 +18,7 @@ const RecipeHeader = () => {
                 />
                 <button type="submit">Search</button>
             </form>
+            <button onClick={doNothing}>+</button>
         </div>
     )
 }

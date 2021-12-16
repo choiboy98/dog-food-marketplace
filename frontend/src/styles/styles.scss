@@ -54,6 +54,7 @@ button {
 .recipe-header {
   top: 20rem;
   position: relative;
+  display: flex;
 }
 
 .tags-input {
@@ -124,48 +125,7 @@ button {
   }
 }
 
-.profile-page {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 
-.profile-recipe {
-  position: absolute;
-  left: 45rem;
-  width: 50%;
-  height: 50%;
-  background-color: $off-white;
-  border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
-}
-
-.profile {
-  left: -25rem;
-  width: 33%;
-  top: 80px;
-  position: relative;
-  margin: 0 auto;
-  background-color: $off-white;
-  border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
-  
-  .desc {
-    text-decoration: none;
-    letter-spacing: 1.75px;
-    text-transform: uppercase;
-    h1 {
-      font-size: 5rem;
-      color: $black;
-    }
-
-    h2 {
-      font-weight: 500;
-      font-size: 0.75rem;
-      color: $gray;
-    }
-  }
-}
 
 .modal {
     width: 50%;
@@ -184,44 +144,6 @@ button {
     position: absolute;
     left: 33%;
     top: 33%;
-}
-
-// Header
-header {
-    height: 80px;
-    width: 100%;
-    position: absolute;
-    top: 0px;
-    z-index: 10;
-    .inner-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 80px;
-        .logo {
-            a {
-              font-weight: 700;
-              text-decoration: none;
-              letter-spacing: 1.5px;
-              color: $black;
-            }
-        }
-        .navigation {
-            nav {
-                button, a {
-                  margin: 0 20px;
-                  text-decoration: none;
-                  letter-spacing: 1.75px;
-                  text-transform: uppercase;
-                  font-size: 0.75rem;
-                  color: $black;
-                  &:last-child {
-                    margin-right: 0px;
-                  }
-                }
-            }
-        }
-    }
 }
 
 // Featured Recipe

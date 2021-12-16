@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { Link, navigate } from 'gatsby'
+
 import { isLoggedIn, logout } from "../utils/auth"
+import "../styles/headers.scss"
 
 const Header = () => {
     return (

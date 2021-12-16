@@ -1,3 +1,5 @@
+import { register } from '../utils/ApiWrapper';
+
 export const isBrowser = () => typeof window !== "undefined"
 
 export const getUser = () => isBrowser() && window.localStorage.getItem("gatsbyUser")
@@ -6,7 +8,15 @@ export const getUser = () => isBrowser() && window.localStorage.getItem("gatsbyU
 
 const setUser = user => window.localStorage.setItem("gatsbyUser", JSON.stringify(user))
 
+const registerUser = async (username: string, password: string) => {
+    const { type, response } = await register(username, password)
+    console.log(type)
+    console.log(response)
+}
+
 export const handleLogin = ( username, password ) => {
+    registerUser(username, password)
+    
     return setUser({
         username: username,
         name: username,
