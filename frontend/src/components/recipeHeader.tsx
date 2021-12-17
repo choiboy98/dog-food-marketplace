@@ -5,8 +5,11 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Ingredients from './ingredients';
 
 const style = {
     position: 'absolute',
@@ -26,39 +29,47 @@ interface RecipeIngredient {
     unit: string
 }
 
-const BasicModal = () => {
+const BasicModal = ({ addRecipeCard }) => {
     const [open, setOpen] = React.useState(false);
+    
     const [currIngredient, updateIngredient] = React.useState("");
     const [currQuantity, updateQuantity] = React.useState(0);
     const [currUnit, updateUnit] = React.useState("");
+    
     const [ingredients, updateIngredients] = React.useState([])
     const [description, updateDescription] = React.useState("")
+    const [error, updateError] = React.useState("")
+    const [name, updateName] = React.useState("")
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
         
     const addIngredients = () => {
         if (currIngredient !== "" && currQuantity > 0 && currUnit !== "") {
-            let currRecipeIngredient : RecipeIngredient = {
+            console.log(ingredients)
+            let ingredientBlock : RecipeIngredient = {
                 ingredient: currIngredient,
                 quantity: currQuantity,
                 unit: currUnit
             }
             updateIngredients([...ingredients, {
-                currRecipeIngredient
+                currIngredient, currQuantity, currUnit
             }])
-            console.log("yay")
-            ingredients.map((i, index) => {
-                console.log(i["currRecipeIngredient"])
-            })
         } else {
             console.log("nay")
+            updateError("please specify ingredient, quantity, or unit")
         }
 
     }
 
     const addRecipe = () => {
         // TODO: Implement this
+        ingredients.forEach(function(value, key) {
+            let test = value as RecipeIngredient
+            console.log(key + ' = ' + test)
+        })
+        console.log("ingredient " + ingredients)
+        addRecipeCard(name, ingredients, description)
     }
 
     return (
@@ -71,6 +82,7 @@ const BasicModal = () => {
             aria-describedby="modal-modal-description"
         >
             <Box sx={style}>
+                <TextField id="standard-basic" label="name" variant="standard" onChange={e => updateName(e.target.value)}/>
                 <TextField id="standard-basic" label="ingredient" variant="standard" onChange={e => updateIngredient(e.target.value)}/>
                 <TextField
                     id="outlined-number"
@@ -88,20 +100,21 @@ const BasicModal = () => {
                     label="unit"
                     onChange={e => updateUnit(e.target.value)}
                 >
-                    <MenuItem value={10}>oz</MenuItem>
-                    <MenuItem value={20}>g</MenuItem>
-                    <MenuItem value={30}>ml</MenuItem>
-                    <MenuItem value={30}>cup</MenuItem>
-                    <MenuItem value={30}>tbsp</MenuItem>
+                    <MenuItem value={"oz"}>oz</MenuItem>
+                    <MenuItem value={"g"}>g</MenuItem>
+                    <MenuItem value={"ml"}>ml</MenuItem>
+                    <MenuItem value={"cup"}>cup</MenuItem>
+                    <MenuItem value={"tbsp"}>tbsp</MenuItem>
                 </Select>
-                <Button variant="contained" onClick={addIngredients}>Add</Button>
+                <Button variant="contained" onClick={addIngredients}>Add Ingredients</Button>
                 {
-                    ingredients.map((i) => {
+                    ingredients.map((ingredient) => {
+                        // let addedIngredient = ingredient["ingredientBlock"]
                         return(
                             <div>
-                                <h2>{i["currRecipeIngredient"].ingredient}</h2>
-                                <h2>{i["currRecipeIngredient"].quantity}</h2>
-                                <h2>{i["currRecipeIngredient"].unit}</h2>
+                                <h2>{ingredient.ingredient}</h2>
+                                <h2>{ingredient.quantity}</h2>
+                                <h2>{ingredient.unit}</h2>
                             </div>
                         )
                     })
@@ -115,16 +128,47 @@ const BasicModal = () => {
                     }}
                     onChange={e => updateDescription(e.target.value)}
                 />
-                <Button variant="contained" onClick={addRecipe}>Add</Button>
+                <Button variant="contained" onClick={addRecipe}>Add Recipe</Button>
+                {
+                    error !== "" ? 
+                        <h2>{error}</h2>
+                    : ""
+                } 
             </Box>
         </Modal>
         </div>
     );
   }
 
-const RecipeHeader = () => {
-    const doNothing = () => {
+const card = (name, ingredients, description) => (
+    <CardContent>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            {name}
+        </Typography>
+        {
+            ingredients.map((ingredient) => {
+                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    {ingredient.ingredient + " " + ingredient.quantity + " " + ingredient.unit}
+                </Typography>
+            })
+        }
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+            {description}
+        </Typography>
+    </CardContent>
+)
 
+const RecipeHeader = () => {
+    const [shouldAddRecipe, updateShouldAddRecipe] = React.useState(false)
+    const [recipes, updateRecipes] = React.useState([])
+
+    const addRecipeCard = (name, ingredients, description) => {
+        console.log("here " + name)
+        
+        updateRecipes([...recipes, {
+            name, ingredients, description
+        }])
+        updateShouldAddRecipe(true);
     }
 
     return (
@@ -141,7 +185,16 @@ const RecipeHeader = () => {
                 />
                 <button type="submit">Search</button>
             </form>
-            <BasicModal />
+            <BasicModal addRecipeCard={addRecipeCard} />
+            {
+                recipes.map((recipe) => {
+                    console.log("outer ingredients " + recipe.ingredients)
+                    return(
+                     <Card variant="outlined">{card(recipe.name, recipe.ingredients, recipe.description)}</Card>
+                    )
+                })
+            }
+
         </div>
     )
 }
