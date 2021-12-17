@@ -24,19 +24,10 @@ const Login = ({ path }) => {
             <div className="modal_content">
                 <span className="close" onClick={handleClick}>&times;    </span>
                 <form onSubmit={handleClick}>
-                    <label>
-                        username: 
-                        <input type="text" value={username} onChange={e => updateUsername(e.target.value)} />
-                    </label>
-                    <div>
-                        <label>
-                            password: 
-                            <input type="text" value={password} onChange={e => updatePassword(e.target.value)} />
-                        </label>
-                    </div>
+                    <TextField id="standard-basic" label="username" variant="standard" onChange={e => updateUsername(e.target.value)} />
+                    <TextField id="standard-basic" label="password" variant="standard" onChange={e => updatePassword(e.target.value)} />
                     <input type="submit" value="Log In" onClick={onSubmit}/>
                 </form>
-                <TextField id="standard-basic" label="Standard" variant="standard" />
             </div>
         </div>
     )
